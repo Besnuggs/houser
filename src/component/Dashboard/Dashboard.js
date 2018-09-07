@@ -13,9 +13,10 @@ class Dashboard extends Component {
     render() { 
         return (
         <div>
-            <p>Dashboard</p>
+  <p>Dashboard</p>
 <Link to="/wizard"><button>Add New Property</button></Link>
-        </div>  );
+        </div>  
+        );
     }
 }
  

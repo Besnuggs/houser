@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Dashboard from './component/Dashboard/Dashboard'
 import Header from './component/Header/Header'
-import Wizard from './component/Wizard/Wizard'
 import routes from './routes'
 
 
