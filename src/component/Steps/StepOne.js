@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
+import {connect} from 'react-redux'
 
 class StepOne extends Component {
     constructor (props){
@@ -25,7 +26,8 @@ class StepOne extends Component {
          })
      }
    
-    render() { 
+    render() {
+        console.log(this.props)
         return (
         <div>
         <input name="name" placeholder="Name" onChange={this.handleInput} />
@@ -38,5 +40,15 @@ class StepOne extends Component {
         );
     }
 }
+
+function mapStateToProps(state){
+const {name, address, city, zip} = state
+return{
+    name,
+    address,
+    city,
+    zip
+}
+}
  
-export default StepOne;
+export default connect (mapStateToProps) (StepOne);

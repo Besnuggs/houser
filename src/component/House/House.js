@@ -11,7 +11,8 @@ function House (props){
         <p>{props.city}</p>
         <p>{props.state}</p>
         <p>{props.zip}</p>
-        <button>Delete</button>
+        <button value={props.id} onClick={() => props.deleteHouse(props.id)}>Delete</button>
+        <hr />
         </div>
     )
 }

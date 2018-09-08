@@ -25,7 +25,8 @@ updateHouseList(){
 }
 
 deleteHouse(){
-    axios.delete('api/houses').then((res) => {
+    axios.delete(`api/houses/{id}`).then(
+        (res) => {
         this.setState({
             HouseList: res.data
         })
@@ -35,21 +36,20 @@ deleteHouse(){
 
    
  render(props) {
-    console.log(this.state.HouseList)
-    let HouseListInfo = this.state.HouseList.map((House, Index) => {      
-     const {name, address, city, state, zip, img} = House
-        return (
-        <div>
+     console.log(this.state)
+    let HouseListInfo = this.state.HouseList.map((Info, Index) => {      
+     const {id, name, address, city, state, zip, img} = Info 
+     return (
         <House 
-        id={Index}
+        id={id}
         name={name}
         address={address}
         city={city}
         state={state}
         zip={zip}
         img={img}
+        deleteHouse={this.deleteHouse}
         />
-        </div>
     )
     }
 );
@@ -57,8 +57,9 @@ deleteHouse(){
     return (
         <div>
         <p>Dashboard</p>
+        {HouseListInfo}
         <House />
-<Link to="/wizard/StepOne"><button>Add New Property</button></Link>
+        <Link to="/wizard/StepOne"><button>Add New Property</button></Link>
         </div>  
         );
     }

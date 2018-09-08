@@ -1,5 +1,5 @@
-DELETE FROM House
+DELETE FROM Houses
 WHERE id = ${id};
 
-SELECT * FROM House
+SELECT * FROM Houses
 ORDER BY rent DESC;

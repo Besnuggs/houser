@@ -19,7 +19,14 @@ module.exports = {
     })
     },
     deleteHouse : (req,res,next) => {
-        
+        let {id} = req.params
+        const db = req.app.get('db');
+        db.delete_house({id:id}).then(Houses =>{
+            res.status(200).send(Houses)
+        }).catch(err => {
+            console.log(err);
+            res.status(500).send(err)
+        })
     }
 
 }
