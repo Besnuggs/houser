@@ -37,31 +37,28 @@ deleteHouse(){
  render(props) {
     console.log(this.state.HouseList)
     let HouseListInfo = this.state.HouseList.map((House, Index) => {      
-     console.log(House)
+     const {name, address, city, state, zip, img} = House
         return (
         <div>
         <House 
-        name={House.name}
-        address={House.address}
-        city={House.city}
-        state={House.state}
-        zip={House.zip}
+        id={Index}
+        name={name}
+        address={address}
+        city={city}
+        state={state}
+        zip={zip}
+        img={img}
         />
         </div>
     )
-    });
+    }
+);
 
     return (
         <div>
         <p>Dashboard</p>
-        <House 
-        name={House.name}
-        address={House.address}
-        city={House.city}
-        state={House.state}
-        zip={House.zip}
-        />
-<Link to="/wizard"><button>Add New Property</button></Link>
+        <House />
+<Link to="/wizard/StepOne"><button>Add New Property</button></Link>
         </div>  
         );
     }
