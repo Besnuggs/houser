@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 //endpoints
 app.get('/api/houses/', ctrl.getHouses)
 app.post('/api/houses/', ctrl.addHouses)
+app.delete(`/api/houses/:id`, ctrl.deleteHouse)
 
 
 //Listening to Port

@@ -1,22 +1,20 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-import axios from 'axios'
+import { connect } from 'react-redux'
+import { uploadIMG } from '../../ducks/reducer'
 
 class StepTwo extends Component {
     constructor (props){
         super (props)
             this.state = { 
-                name: '',
-                address: '',
-                city: '',
-                state: '',
-                zip: 0
+                img: ''
              }
-             this.addHouse = this.addHouse.bind(this)
+        this.addImg = this.addImg.bind(this) 
     }
 
-    addHouse(){
-        axios.post(`/api/houses`,{name: this.state.name, address: this.state.address,city: this.state.city, state: this.state.state, zip: this.state.zip}).then()
+    addImg(){
+let img = this.state
+uploadIMG(img)
     }
 
     handleInput = (e) =>{
@@ -28,16 +26,20 @@ class StepTwo extends Component {
     render() { 
         return (
         <div>
-        <input name="name" placeholder="Name" onChange={this.handleInput} />
-        <input name="address" placeholder="Address" onChange={this.handleInput} />
-        <input name="city" placeholder="City" onChange={this.handleInput} />
-        <input name="state" placeholder="State (abbreviated)" onChange={this.handleInput} />
-        <input name="zip" placeholder="Zipcode (5 digits)" onChange={this.handleInput} />
+        <input name="img" placeholder="Img URL" onChange={this.handleInput} />
         <Link to='../Wizard/StepOne'><button>Previous Step</button></Link>
-        <Link to="Wizard/StepThree"><button>Next Step</button></Link>
+        <Link to="../Wizard/StepThree"><button onClick={this.addImg}>Next Step</button></Link>
         </div>  
         );
     }
 }
- 
-export default StepTwo;
+
+function mapStateToProps (state){
+    let {img} = state
+    return{
+        img
+    }
+}
+
+
+export default connect (mapStateToProps, {uploadIMG}) (StepTwo);

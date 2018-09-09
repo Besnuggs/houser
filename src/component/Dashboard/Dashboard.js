@@ -9,7 +9,7 @@ class Dashboard extends Component {
             this.state = { 
                 HouseList: []
              }
-
+             this.deleteHouse = this.deleteHouse.bind(this)
     }
 
 componentDidMount(){
@@ -19,13 +19,14 @@ axios.get('api/houses').then((res) => {
 }
 
 updateHouseList(){
-    axios.get('api/houses').then((res) => {
+    axios.get('/api/houses').then((res) => {
         this.setState({HouseList: res.data})
     })
 }
 
-deleteHouse(){
-    axios.delete(`api/houses/{id}`).then(
+deleteHouse(id){
+    console.log(id)
+    axios.delete(`/api/houses/${id}`).then(
         (res) => {
         this.setState({
             HouseList: res.data
@@ -34,9 +35,7 @@ deleteHouse(){
     })
 }
 
-   
  render(props) {
-     console.log(this.state)
     let HouseListInfo = this.state.HouseList.map((Info, Index) => {      
      const {id, name, address, city, state, zip, img} = Info 
      return (

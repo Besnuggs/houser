@@ -19,9 +19,10 @@ module.exports = {
     })
     },
     deleteHouse : (req,res,next) => {
+        console.log(req.params)
         let {id} = req.params
         const db = req.app.get('db');
-        db.delete_house({id:id}).then(Houses =>{
+        db.delete_house({id}).then(Houses =>{
             res.status(200).send(Houses)
         }).catch(err => {
             console.log(err);

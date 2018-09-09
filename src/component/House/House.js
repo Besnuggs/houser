@@ -1,11 +1,11 @@
 import React from 'react'
+import './House.css'
 
 function House (props){
-    console.log(props.name)
     return(
         <div>
         <h1>House</h1>
-        <img src={props.img} alt='dontknow' />
+        <img className="display-House" src={props.img} alt='dontknow' />
         <p>{props.name}</p>
         <p>{props.address}</p>
         <p>{props.city}</p>

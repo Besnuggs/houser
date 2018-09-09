@@ -1,72 +1,83 @@
-const initialState = {
+let initialState = {
     name: '',
     address: '',
     city: '',
-    state: '',
-    zip: 0
+    State: '',
+    zip: 0,
+    img: '',
+    mortgage: 0,
+    rent: 0
 }
 
-
+//Constants for function
 const UPDATE_NAME = "UPDATE_NAME"
-const UPDATE_ADDRESS = "UPDATE_ADDRESS"
-const UPDATE_CITY = "UPDATE_CITY"
 const UPDATE_STATE = "UPDATE_STATE"
-const UPDATE_ZIP = "UPDATE_ZIP"
+const IMG = "UPDATE_IMG"
+const MORTGAGEANDRENT = "UPDATE_MORTGAGEANDRENT"
 
-function reducer(state = initialState, action){
+//Action Builder Functions
+export function updateName (name) {
+return{
+type: UPDATE_NAME,
+payload: name
+}
+}
+
+export function updateStateValues (info) {
+    console.log('updateStateValues', info)
+    return{
+        type: UPDATE_STATE,
+        payload: info
+    }
+}
+
+export function uploadIMG (img) {
+    console.log('IMG', img)
+    return{
+        type: IMG,
+        payload: img
+    }
+}
+
+function reducer (state = initialState, action){
+console.log('Reducer State', state)
 switch (action.type){
     case UPDATE_NAME:
-        return Object.assign({}, state, {name: action.payload})
-    case UPDATE_ADDRESS:
-        return Object.assign({}, state, {address: action.payload})
-    case UPDATE_CITY:
-        return Object.assign({}, state, {city: action.payload})
-    case UPDATE_STATE:
-        return Object.assign({}, state, {state: action.payload})
-    case UPDATE_ZIP:
-        return Object.assign({}, state, {zip: action.payload})
+    return Object.assign({}, state, {name: action.payload})
+    
 
         default: return state;
 }
 }
 
+  // case IMG:
+    //     return Object.assign({}, state, {img: action.payload})
+    // case MORTGAGE:
+    //     return Object.assign({}, state, {mortgage: action.payload})
+    // case RENT:
+    //     return Object.assign({}, state, {rent: action.payload})
 
 
-
-export function updateName (name){
-return{
-    type: UPDATE_NAME,
-    payload: name
-}
-}
-
-export function updateAddress (address){
-    return{
-        type: UPDATE_ADDRESS,
-        payload: address
-    }
-}
-
-export function updateCity (city){
-    return{
-        type: UPDATE_CITY,
-        payload: city
-    }
-}
-
-export function updateState (state){
-    return{
-        type: UPDATE_STATE,
-        payload: state
-    }
-}
-
-export function updateZip (zip){
-    return{
-        type: UPDATE_ZIP,
-        payload: zip
-    }
-}
+    // let {name, address, city, State, zip} = action.payload
+    //     return Object.assign({}, state, 
+    //         {name: name,
+    //         address: address,
+    //         city: city,
+    //         State: State,
+    //         zip: zip
+    //     })
+    // case IMG:
+    // let {img} = action.payload
+    //     return Object.assign({}, state,
+    //     {img: img
+    //     })
+    // case MORTGAGEANDRENT:
+    // let {mortgage,rent} = action.payload
+    //     return Object.assign({}, state,
+    //     {
+    //     mortgage: mortgage,
+    //     rent: rent
+    //     })    
 
 
 export default reducer

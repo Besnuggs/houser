@@ -6,11 +6,8 @@ class StepThree extends Component {
     constructor (props){
         super (props)
             this.state = { 
-                name: '',
-                address: '',
-                city: '',
-                state: '',
-                zip: 0
+                mortgage: 0,
+                rent: 0
              }
              this.addHouse = this.addHouse.bind(this)
     }
@@ -28,11 +25,8 @@ class StepThree extends Component {
     render() { 
         return (
         <div>
-        <input name="name" placeholder="Name" onChange={this.handleInput} />
-        <input name="address" placeholder="Address" onChange={this.handleInput} />
-        <input name="city" placeholder="City" onChange={this.handleInput} />
-        <input name="state" placeholder="State (abbreviated)" onChange={this.handleInput} />
-        <input name="zip" placeholder="Zipcode (5 digits)" onChange={this.handleInput} />
+        <input name="mortgage" placeholder="Monthly Mortgage Amount" onChange={this.handleInput} />
+        <input name="rent" placeholder="Desired Monthly Rent" onChange={this.handleInput} />
         <Link to="/Wizard/StepOne"><button>Previous Step</button></Link>
         <Link to="/"> <button onClick={this.addHouse}>Complete</button></Link> 
         </div>  

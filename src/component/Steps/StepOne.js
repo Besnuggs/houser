@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-import axios from 'axios'
 import {connect} from 'react-redux'
+import {updateStateValues} from '../../ducks/reducer.js'
 
 class StepOne extends Component {
     constructor (props){
@@ -10,14 +10,16 @@ class StepOne extends Component {
                 name: '',
                 address: '',
                 city: '',
-                state: '',
+                State: '',
                 zip: 0
              }
-             this.addHouse = this.addHouse.bind(this)
+             this.updateReducerState = this.updateReducerState.bind(this)
+             this.handleInput = this.handleInput.bind(this)
     }
 
-    addHouse(){
-        axios.post(`/api/houses`,{name: this.state.name, address: this.state.address,city: this.state.city, state: this.state.state, zip: this.state.zip}).then()
+    updateReducerState(){
+    let info = this.state
+    updateStateValues(info)
     }
 
     handleInput = (e) =>{
@@ -27,28 +29,34 @@ class StepOne extends Component {
      }
    
     render() {
-        console.log(this.props)
+        console.log(this.state)
         return (
         <div>
-        <input name="name" placeholder="Name" onChange={this.handleInput} />
-        <input name="address" placeholder="Address" onChange={this.handleInput} />
-        <input name="city" placeholder="City" onChange={this.handleInput} />
-        <input name="state" placeholder="State (abbreviated)" onChange={this.handleInput} />
-        <input name="zip" placeholder="Zipcode (5 digits)" onChange={this.handleInput} />
-        <Link to="/Wizard/StepTwo"><button>Next Step</button></Link>
+        <input name="name" value={this.state.name} placeholder="Name" onChange={this.handleInput} />
+
+        <input name="address" value={this.state.address} placeholder="Address" onChange={this.handleInput} />
+
+        <input name="city" value={this.state.city} placeholder="City" onChange={this.handleInput} />
+
+        <input name="state" value={this.state.state} placeholder="State (abbreviated)" onChange={this.handleInput} />
+
+        <input name="zip" value={this.state.zip} placeholder="Zipcode (5 digits)" onChange={this.handleInput} />
+        
+        <Link to="/Wizard/StepTwo"><button onClick={this.updateReducerState}>Next Step</button></Link>
         </div>  
         );
     }
 }
 
 function mapStateToProps(state){
-const {name, address, city, zip} = state
+const {name, address, city, State, zip} = state
 return{
     name,
     address,
     city,
+    State,
     zip
 }
 }
  
-export default connect (mapStateToProps) (StepOne);
+export default connect (mapStateToProps, {updateStateValues}) (StepOne);
