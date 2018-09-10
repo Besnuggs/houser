@@ -10,19 +10,11 @@ let initialState = {
 }
 
 //Constants for function
-const UPDATE_NAME = "UPDATE_NAME"
 const UPDATE_STATE = "UPDATE_STATE"
 const IMG = "UPDATE_IMG"
 const MORTGAGEANDRENT = "UPDATE_MORTGAGEANDRENT"
 
 //Action Builder Functions
-export function updateName (name) {
-return{
-type: UPDATE_NAME,
-payload: name
-}
-}
-
 export function updateStateValues (info) {
     console.log('updateStateValues', info)
     return{
@@ -39,12 +31,38 @@ export function uploadIMG (img) {
     }
 }
 
+export function uploadMortgageRent (money){
+    console.log('UPDATE_MORTGAGEANDRENT', money)
+    return{
+        type: MORTGAGEANDRENT,
+        payload: money
+    }
+}
+
 function reducer (state = initialState, action){
 console.log('Reducer State', state)
 switch (action.type){
-    case UPDATE_NAME:
-    return Object.assign({}, state, {name: action.payload})
-    
+    case UPDATE_STATE:
+    let {name, address, city, State, zip} = action.payload
+        return Object.assign({}, state, 
+        {name: name,
+        address: address,
+        city: city,
+        State: State,
+        zip: zip
+        })
+    case IMG:
+    let {img} = action.payload
+        return Object.assign({}, state,
+        {img: img
+        })
+    case MORTGAGEANDRENT:
+    let {mortgage,rent} = action.payload
+        return Object.assign({}, state,
+        {
+        mortgage: mortgage,
+        rent: rent
+        })    
 
         default: return state;
 }
@@ -57,27 +75,6 @@ switch (action.type){
     // case RENT:
     //     return Object.assign({}, state, {rent: action.payload})
 
-
-    // let {name, address, city, State, zip} = action.payload
-    //     return Object.assign({}, state, 
-    //         {name: name,
-    //         address: address,
-    //         city: city,
-    //         State: State,
-    //         zip: zip
-    //     })
-    // case IMG:
-    // let {img} = action.payload
-    //     return Object.assign({}, state,
-    //     {img: img
-    //     })
-    // case MORTGAGEANDRENT:
-    // let {mortgage,rent} = action.payload
-    //     return Object.assign({}, state,
-    //     {
-    //     mortgage: mortgage,
-    //     rent: rent
-    //     })    
 
 
 export default reducer

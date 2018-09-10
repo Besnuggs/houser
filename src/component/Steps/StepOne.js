@@ -19,7 +19,7 @@ class StepOne extends Component {
 
     updateReducerState(){
     let info = this.state
-    updateStateValues(info)
+    this.props.updateStateValues(info)
     }
 
     handleInput = (e) =>{
@@ -38,7 +38,7 @@ class StepOne extends Component {
 
         <input name="city" value={this.state.city} placeholder="City" onChange={this.handleInput} />
 
-        <input name="state" value={this.state.state} placeholder="State (abbreviated)" onChange={this.handleInput} />
+        <input name="State" value={this.state.State} placeholder="State (abbreviated)" onChange={this.handleInput} />
 
         <input name="zip" value={this.state.zip} placeholder="Zipcode (5 digits)" onChange={this.handleInput} />
         

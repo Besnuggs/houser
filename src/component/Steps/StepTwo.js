@@ -14,7 +14,7 @@ class StepTwo extends Component {
 
     addImg(){
 let img = this.state
-uploadIMG(img)
+this.props.uploadIMG(img)
     }
 
     handleInput = (e) =>{
@@ -27,7 +27,7 @@ uploadIMG(img)
         return (
         <div>
         <input name="img" placeholder="Img URL" onChange={this.handleInput} />
-        <Link to='../Wizard/StepOne'><button>Previous Step</button></Link>
+        <Link to='../Wizard/StepOne'><button onClick={this.addImg}>Previous Step</button></Link>
         <Link to="../Wizard/StepThree"><button onClick={this.addImg}>Next Step</button></Link>
         </div>  
         );

@@ -5,6 +5,7 @@ import {Route} from 'react-router-dom'
 import StepOne from '../Steps/StepOne'
 import StepTwo from '../Steps/StepTwo'
 import StepThree from '../Steps/StepThree'
+import StepFour from '../Steps/StepFour'
 
 class Wizard extends Component {
     render() { 
@@ -13,6 +14,7 @@ class Wizard extends Component {
         <Route path="/Wizard/StepOne" component={StepOne} />
         <Route path="/Wizard/StepTwo" component={StepTwo} />
         <Route path="/Wizard/StepThree" component={StepThree} />
+        <Route path="/Wizard/StepFour" component={StepFour} />
         <Link to="/"><button>Cancel</button></Link>
         </div>  
         );
